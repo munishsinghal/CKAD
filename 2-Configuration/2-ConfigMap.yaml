@@ -1,0 +1,52 @@
+apiVersion: v1 
+kind: ConfigMap 
+metadata:
+  name: webapp-config-map
+data:
+  APP_COLOR: darkblue
+  
+------------
+commands
+kubectl create configmap <config-name> --from-literal=<key>=<value>
+kubectl create configmap app-config 
+    --from-literal=APP_COLOR=blue 
+    --from-literal=env=prod
+kubectl create configmap app-config --from-file-app_config.properties
+------------
+
+--complete ref to configMap
+
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    name: webapp-color
+  name: webapp-color
+spec:
+  containers:
+  - envFrom:
+    - configMapRef: 
+        name: webapp-config-map
+    image: kodekloud/webapp-color
+    name: webapp-color
+    
+    
+    
+--single env to configMap
+
+apiVersion: v1
+kind: Pod
+metadata:
+  labels:
+    name: webapp-color
+  name: webapp-color
+spec:
+  containers:
+  - env:
+      - name: APP_COLOR
+        valueFrom:
+          configMapKeyRef: 
+             name: webapp-config-map
+             key: APP_COLOR
+    image: kodekloud/webapp-color
+    name: webapp-color
