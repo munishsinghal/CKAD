@@ -17,3 +17,15 @@ spec:
 
 -----------
 capabilities are only supported at the container level and NOT at the POD level.
+
+-----------
+
+    RunAsUser: This setting specifies the user ID that the container should run as. It can be set to a specific user ID or to "non-root" to ensure that the container runs as a non-privileged user.
+
+    RunAsGroup: This setting specifies the group ID that the container should run as. Similar to RunAsUser, it can be set to a specific group ID or to "non-root".
+
+    FSGroup: This setting specifies the group ID that owns the pod's volumes. This ensures that files created in the volumes are owned by the correct group.
+
+    SELinuxOptions: This setting allows you to set SELinux context options for the container.
+
+    Sysctls: This setting allows you to set Linux kernel parameters for the container.
