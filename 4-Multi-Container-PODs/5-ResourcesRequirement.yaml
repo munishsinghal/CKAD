@@ -1,1 +1,55 @@
 
+#Memory requests and limits:
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers:
+  - name: my-container
+    image: my-image
+    resources:
+      requests:
+        memory: "1Gi"
+      limits:
+        memory: "2Gi"
+
+-----------------------
+
+#CPU requests and limits:
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers:
+  - name: my-container
+    image: my-image
+    resources:
+      requests:
+        cpu: "1"
+      limits:
+        cpu: "2"
+
+-----------------------
+
+#Memory and CPU requests and limits:
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: my-pod
+spec:
+  containers:
+  - name: my-container
+    image: my-image
+    resources:
+      requests:
+        memory: "1Gi"
+        cpu: "1"
+      limits:
+        memory: "2Gi"
+        cpu: "2"
+
