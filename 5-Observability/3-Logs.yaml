@@ -1,0 +1,6 @@
+
+kubectl logs -f <pod-name>
+
+if multiple container in pod then 
+
+kubectl logs -f <pod-name> <container-name>
