@@ -1,19 +1,38 @@
-
 apiVersion: v1
 kind: Pod
 metadata:
   name: my-app
 spec:
   containers:
-  - name: my-container
-    image: my-image
+  - name: my-app-container
+    image: my-app-image:latest
+    ports:
+    - containerPort: 8080
     readinessProbe:
       httpGet:
         path: /healthz
         port: 8080
+      initialDelaySeconds: 5
+      periodSeconds: 10
+    livenessProbe:
+      httpGet:
+        path: /healthz
+        port: 8080
       initialDelaySeconds: 15
-      periodSeconds: 30
-      failureThreshold: 3
+      periodSeconds: 20
+
+In this configuration, we have defined a single container my-app-container that runs the my-app-image:latest image and listens on port 8080.
+
+We've also added two probes:
+
+    Readiness probe: this probe is used to determine when the application is ready to receive traffic. It sends an HTTP GET request to /healthz every 10 seconds, starting 5 seconds after the container starts. If the application responds with an HTTP status code between 200 and 399, the container is considered ready. Otherwise, it is considered not ready.
+
+    Liveness probe: this probe is used to determine whether the application is still running and healthy. It sends an HTTP GET request to /healthz every 20 seconds, starting 15 seconds after the container starts. If the application responds with an HTTP status code between 200 and 399, the container is considered alive. Otherwise, it is considered dead and will be restarted.
+
+Note that the /healthz endpoint should be a simple HTTP endpoint that always returns an HTTP status code between 200 and 399 when the application is healthy. You can implement this endpoint in your application code, or use a separate tool like kube-healthz to provide it.
+
+By using these probes, Kubernetes can monitor the health of your application and automatically restart the container if it becomes unresponsive or unhealthy. This helps to ensure high availability and reliability for your application.
+
 
 
 ----------------
