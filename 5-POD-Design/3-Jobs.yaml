@@ -18,3 +18,16 @@ spec:
 
 see the outout of the pod
 kubectl logs math-add-job-343djf
+
+
+-------------------
+
+The possible values for the restartPolicy are:
+
+    Always: Kubernetes will always restart the container when it exits, regardless of the exit code.
+
+    OnFailure: Kubernetes will only restart the container when it exits with a non-zero exit code.
+
+    Never: Kubernetes will never restart the container when it exits.
+
+Here is an example of a YAML file for a pod with the restartPolicy set to OnFailure:
