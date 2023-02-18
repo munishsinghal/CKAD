@@ -1,1 +1,13 @@
 
+kind: Job
+metadata:
+  name: my-job
+spec:
+  completions: 1
+  template:
+    spec:
+      containers:
+      - name: my-container
+        image: my-image
+        command: ["echo", "Hello, World!"]
+      restartPolicy: Never
