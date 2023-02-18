@@ -4,6 +4,7 @@ metadata:
   name: my-job
 spec:
   completions: 3
+  parallelism: 3
   template:
     spec:
       containers:
