@@ -10,3 +10,7 @@ kubectl rollout history deployment/myapp-dep
 kubectl rollout undo deployment/myapp-deployment
 
 kubectl rollout history deployment nginx --revision=1
+
+kubectl rollout undo deployment nginx --to-revision=1
+
+kubectl describe deployments. nginx | grep -i image:
