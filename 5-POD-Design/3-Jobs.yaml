@@ -11,3 +11,9 @@ spec:
         image: my-image
         command: ["echo", "Hello, World!"]
       restartPolicy: Never
+
+
+----------------
+
+see the outout of the pod
+kubectl logs math-add-job-343djf
