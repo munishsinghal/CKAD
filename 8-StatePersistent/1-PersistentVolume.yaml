@@ -15,7 +15,8 @@ spec:
     hostPath:
       path: /var/log/webapp
       type: Directory
-	  
+
+
 	  
 -------------------------
 	  
@@ -32,7 +33,8 @@ spec:
     storage: 100Mi
   hostPath:
     path: /pv/log
-	
+
+
 -------------------------
 
 kind: PersistentVolumeClaim
@@ -45,7 +47,8 @@ spec:
   resources:
     requests:
       storage: 50Mi
-	  
+
+
 -------------------------
 
 apiVersion: v1
