@@ -1,0 +1,14 @@
+
+
+
+docker build -t webapp-color . (without any tag)
+
+docker run -p 8282:8080 webapp-color
+
+docker run python:3.6 cat /etc/*release*
+
+docker build -t webapp-color:lite .
+
+kubectl create secret generic db-secret --from-literal=DB_Host=sql01 --from-literal=DB_User=root --from-literal=DB_Password=password123
+
+
