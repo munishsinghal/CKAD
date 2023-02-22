@@ -63,70 +63,27 @@ Use the given spec:
 	
 	with files:
 --------------------------------------
-kind: Role
 apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
 metadata:
-  namespace: default
-  name: developer
+  namespace: my-namespace
+  name: my-role
 rules:
 - apiGroups: [""]
   resources: ["pods"]
-  verbs: ["list", "create","delete"]
+  verbs: ["get", "list"]
+----------------------------------------
 
----
-kind: RoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
+kind: RoleBinding
 metadata:
-  name: dev-user-binding
+  name: my-rolebinding
+  namespace: my-namespace
 subjects:
 - kind: User
-  name: dev-user
-  apiGroup: rbac.authorization.k8s.io
+  name: alice
 roleRef:
   kind: Role
-  name: developer
+  name: my-role
   apiGroup: rbac.authorization.k8s.io
-  
-  ----------------
-  
-  Edit the developer role in the blue namespace to add a new rule under the rules section.
-  kubectl edit role developer -n blue
----------------------
-- apiGroups:
-  - apps
-  resources:
-  - deployments
-  verbs:
-  - get
-  - watch
-  - create
-  - delete
-
-So it looks like this:
------------------------------
-apiVersion: rbac.authorization.k8s.io/v1
-kind: Role
-metadata:
-  name: developer
-  namespace: blue
-rules:
-- apiGroups:
-  - apps
-  resourceNames:
-  - dark-blue-app
-  resources:
-  - pods
-  verbs:
-  - get
-  - watch
-  - create
-  - delete
-- apiGroups:
-  - apps
-  resources:
-  - deployments
-  verbs:
-  - get
-  - watch
-  - create
-  - delete
+  ---------------------------------------
