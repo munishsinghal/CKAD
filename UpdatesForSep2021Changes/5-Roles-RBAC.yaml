@@ -88,3 +88,46 @@ roleRef:
   name: my-role
   apiGroup: rbac.authorization.k8s.io
   ---------------------------------------
+
+
+
+Inspect the environment and identify the authorization modes configured on the cluster. Check the kube-apiserver settings.
+kubectl describe pod kube-apiserver-controlplane -n kube-system 
+and look for --authorization-mode.
+
+
+What are the resources the kube-proxy role in the kube-system namespace is given access to?
+kubectl describe role kube-proxy -n kube-system
+kubectl describe rolebinding kube-proxy -n kube-system
+
+
+Create the necessary roles and role bindings required for the dev-user to create, list and delete pods in the default namespace.
+-To create a Role:- kubectl create role developer --namespace=default --verb=list,create,delete --resource=pods
+-To create a RoleBinding:- kubectl create rolebinding dev-user-binding --namespace=default --role=developer --user=dev-user
+OR
+
+---
+kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  namespace: default
+  name: developer
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["list", "create","delete"]
+
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: dev-user-binding
+subjects:
+- kind: User
+  name: dev-user
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: developer
+  apiGroup: rbac.authorization.k8s.io
+
