@@ -72,6 +72,7 @@ rules:
 - apiGroups: [""]
   resources: ["pods"]
   verbs: ["get", "list"]
+  resourceNames: ["blue", "orange"] # in case you want to restrict access to pods name blue and orange
 ----------------------------------------
 
 apiVersion: rbac.authorization.k8s.io/v1
