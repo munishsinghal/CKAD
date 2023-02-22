@@ -1,1 +1,9 @@
 
+1. Authentication
+2. Authorization
+
+
+kube-apiserver
+
+--authorization-mode= AlwaysAllow    # by default
+change it to --authorization-mode=Node, RBAC, Webhook  #to further change to your requirement
