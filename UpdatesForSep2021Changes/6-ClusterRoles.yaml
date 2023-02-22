@@ -1,1 +1,39 @@
 Resources are categorised as Clustered Scope or Namespaced.
+
+
+How many ClusterRoles do you see defined in the cluster?
+Run the command: kubectl get clusterroles --no-headers | wc -l 
+or 
+kubectl get clusterroles --no-headers -o json | jq '.items | length'
+
+
+What user/groups are the cluster-admin role bound to?
+kubectl describe clusterrolebinding cluster-admin
+
+
+
+
+A new user michelle joined the team. She will be focusing on the nodes in the cluster. Create the required ClusterRoles and ClusterRoleBindings so she gets access to the nodes
+---
+kind: ClusterRole
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: node-admin
+rules:
+- apiGroups: [""]
+  resources: ["nodes"]
+  verbs: ["get", "watch", "list", "create", "delete"]
+
+---
+kind: ClusterRoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: michelle-binding
+subjects:
+- kind: User
+  name: michelle
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: ClusterRole
+  name: node-admin
+  apiGroup: rbac.authorization.k8s.io
