@@ -1,0 +1,131 @@
+Run the kubectl config view command and count the number of clusters.
+
+change the context
+kubectl config --kubeconfig=/root/my-kube-config use-context research
+
+see the current context
+kubectl config --kubeconfig=/root/my-kube-config current-context
+
+We don't want to have to specify the kubeconfig file option on each command. Make the my-kube-config file the default kubeconfig.
+mv /root/my-kube-config /root/.kube/config
+
+to see all APIs in kube
+curl http://localhost:6443 -k
+
+
+kubectl proxy
+curl http://localhost:8801 -k
+
+kube proxy is not same as kubectl proxy
+
+
+Authorization in kubeconfig
+--authorization-mode=Always
+--authorization-mode=Node,RBAC, Webhook
+
+RBAC has 3 sections
+apiGroups, resources, verbs
+
+rules
+- apiGroup: [""\
+  resources: ["pods"]
+   verbs: ["list", "get", "create", "update"]
+   
+kubectl auth can-i create deployments
+
+
+kubectl auth can-i delete deployments
+
+kubectl auth can-i create pods --as dev-user
+
+
+kubectl auth can-i create pods --as dev-user --namespace test
+
+Inspect the environment and identify the authorization modes configured on the cluster. Check the kube-apiserver settings.
+Use the command   kubectl describe pod kube-apiserver-controlplane -n kube-system and look for --authorization-mode.
+
+Which account is the kube-proxy role assigned to?
+kubectl describe rolebinding kube-proxy -n kube-system
+
+
+Create the necessary roles and role bindings required for the dev-user to create, list and delete pods in the default namespace.
+Use the given spec:
+    Role: developer
+    Role Resources: pods
+    Role Actions: list
+    Role Actions: create
+    Role Actions: delete
+    RoleBinding: dev-user-binding
+	
+	with commands:
+	kubectl create role developer --verb=list,create,delete --resource=pods
+	kubectl create rolebinding dev-user-binding --role=developer --user=dev-user
+	
+	with files:
+	kind: Role
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  namespace: default
+  name: developer
+rules:
+- apiGroups: [""]
+  resources: ["pods"]
+  verbs: ["list", "create","delete"]
+
+---
+kind: RoleBinding
+apiVersion: rbac.authorization.k8s.io/v1
+metadata:
+  name: dev-user-binding
+subjects:
+- kind: User
+  name: dev-user
+  apiGroup: rbac.authorization.k8s.io
+roleRef:
+  kind: Role
+  name: developer
+  apiGroup: rbac.authorization.k8s.io
+  
+  
+  
+  Edit the developer role in the blue namespace to add a new rule under the rules section.
+  kubectl edit role developer -n blue
+
+- apiGroups:
+  - apps
+  resources:
+  - deployments
+  verbs:
+  - get
+  - watch
+  - create
+  - delete
+
+So it looks like this:
+
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  name: developer
+  namespace: blue
+rules:
+- apiGroups:
+  - apps
+  resourceNames:
+  - dark-blue-app
+  resources:
+  - pods
+  verbs:
+  - get
+  - watch
+  - create
+  - delete
+- apiGroups:
+  - apps
+  resources:
+  - deployments
+  verbs:
+  - get
+  - watch
+  - create
+  - delete
