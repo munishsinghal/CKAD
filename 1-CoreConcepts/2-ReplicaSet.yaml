@@ -12,7 +12,7 @@ kubectl scale --replias=6 replicaset myapp-replicaset
 
 ------------------------------------------------------
 
-apiVersion: v1
+apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
   name: replicaset-1
