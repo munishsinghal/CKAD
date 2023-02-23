@@ -1,0 +1,6 @@
+ReplicaSet is new version of ReplicationController. the main differnce between both is selector in ReplicaSet(spec section), which is to take care for other pods with same selectors attributes.
+selector:
+  matchLabels:
+	tier: app
+  
+-----------------------------------------------------------
