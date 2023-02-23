@@ -4,3 +4,8 @@ selector:
 	tier: app
   
 -----------------------------------------------------------
+
+kubectl replace -f replicaset-defination.yaml
+
+kubectl scale --replicas=6 -f replicaset-defination.yaml
+
