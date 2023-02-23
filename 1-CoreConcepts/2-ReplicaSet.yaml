@@ -12,6 +12,12 @@ kubectl scale --replias=6 replicaset myapp-replicaset
 
 ------------------------------------------------------
 
+if in the question it is asked to delete pods related to replicaset so that replicaset can create new pods with changed defination, then instead of deleting each pod seperately use below
+kubectl scale --replias=0 replicaset myapp-replicaset
+and then scale back to required.
+kubectl scale --replias=4 replicaset myapp-replicaset
+------------------------------------------------------
+
 apiVersion: apps/v1
 kind: ReplicaSet
 metadata:
