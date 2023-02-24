@@ -2,6 +2,9 @@
 Difference between ReplicaSet and Deployment
 - how you want to deploy like rolling update.
 
+As is turns out, ReplicaSets are actually what Deployments create when you deploy them. You can deploy ReplicaSets directly, but they don’t have rolling update functionality on their own. They instead deploy pods, and it’s the Deployments job to manage the rolling updates (via rolling the update of the ReplicaSets), which in turn causes a rolling update of the pods
+
+Deployment is a controller on top of replicasets that manages it's lifecycle, including creation, deletion, upgrades etc. Deployment maintains the specified no of replicas at any given moment, provided enough resources are there.
 
 ----------------
 
