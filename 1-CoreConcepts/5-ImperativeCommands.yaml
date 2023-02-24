@@ -16,3 +16,23 @@ Ans: kubectl expose pod redis --port=6379 --name redis-service
 
 Que: Create a deployment named webapp using the image kodekloud/webapp-color with 3 replicas. Try to use imperative commands only. Do not create definition files.
 Ans: kubectl create deployment webapp --image=kodekloud/webapp-color --replicas=3
+
+
+Que: Create a new pod called custom-nginx using the nginx image and expose it on container port 8080.
+Ans: kubectl run custom-nginx --image=nginx --port=8080
+
+
+Que: Create a new namespace called dev-ns.
+Ans: kubectl create namespace dev-ns or kubectl create ns dev-ns
+
+
+Que: Create a new deployment called redis-deploy in the dev-ns namespace with the redis image. It should have 2 replicas.
+Ans: kubectl create deployment redis-deploy --image=redis --replicas=2 -n dev-ns
+
+
+Que: Create a pod called httpd using the image httpd:alpine in the default namespace. Next, create a service of type ClusterIP by the same name (httpd). The target port for the service should be 80.
+    'httpd' pod created with the correct image?
+    'httpd' service is of type 'ClusterIP'?
+    'httpd' service uses correct target port 80?
+    'httpd' service exposes the 'httpd' pod?
+Ans:  kubectl run httpd --image=httpd:alpine --port=80 --expose
