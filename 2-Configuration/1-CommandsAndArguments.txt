@@ -36,3 +36,7 @@ docker run ubuntu-sleeper 10
 FROM Ubuntu
 ENTRYPOINT["sleep"]
 CMD ["5"] -- default argument passed if you did not pass from outside then 5 will be default
+
+docker run ubuntu-sleeper 5
+or
+docker run ubuntu-sleeper
