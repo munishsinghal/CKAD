@@ -1,19 +1,4 @@
 
-apiVersion: v1
-kind: Pod
-metadata:
-  name: command-demo
-  labels:
-    purpose: demonstrate-command
-spec:
-  containers:
-  - name: command-demo-container
-    image: debian
-    command: ["printenv"]
-    args: ["HOSTNAME", "KUBERNETES_PORT"]
-
-------------------------------
-
 FROM Ubuntu
 CMD sleep 5
 
@@ -45,3 +30,24 @@ docker run ubuntu-sleeper
 ---------------------------------------
 if you want to overwrite the entry point then use
 docker run --entrypoint sleep2.0 ubuntu-sleeper 10
+
+-------------------------------------------
+
+
+
+
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: command-demo
+  labels:
+    purpose: demonstrate-command
+spec:
+  containers:
+  - name: command-demo-container
+    image: debian
+    command: ["printenv"]    --it will orverwite the entrypoint
+    args: ["HOSTNAME", "KUBERNETES_PORT"]
+
+------------------------------
