@@ -51,3 +51,22 @@ spec:
     args: ["HOSTNAME", "KUBERNETES_PORT"]
 
 ------------------------------
+
+
+
+Create a pod with the given specifications. By default it displays a blue background. Set the given command line arguments to change it to green.
+    Pod Name: webapp-green
+    Image: kodekloud/webapp-color
+    Command line arguments: --color=green
+    
+
+apiVersion: v1
+kind: Pod
+metadata:
+  name: webapp-green
+spec:
+  containers:
+  - name: webapp-green
+    image: kodekloud/webapp-color
+    args: ["--color", "green"]
+
