@@ -32,3 +32,7 @@ It will only append in the existing entrypoint
 docker run ubuntu-sleeper 10
 
 --------------------------------------
+
+FROM Ubuntu
+ENTRYPOINT["sleep"]
+CMD ["5"] -- default argument passed if you did not pass from outside then 5 will be default
