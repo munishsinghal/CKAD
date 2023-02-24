@@ -40,3 +40,8 @@ CMD ["5"] -- default argument passed if you did not pass from outside then 5 wil
 docker run ubuntu-sleeper 5
 or
 docker run ubuntu-sleeper
+
+
+---------------------------------------
+if you want to overwrite the entry point then use
+docker run --entrypoint sleep2.0 ubuntu-sleeper 10
