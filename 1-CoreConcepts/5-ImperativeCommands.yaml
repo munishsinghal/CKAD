@@ -1,1 +1,18 @@
+Que: Deploy a redis pod using the redis:alpine image with the labels set to tier=db.
+Either use imperative commands to create the pod with the labels. Or else use imperative commands to generate the pod definition file, then add the labels before creating the pod using the file.
 
+Ans: kubectl run redis -l tier=db --image=redis:alpine
+
+
+
+
+Que: Create a service redis-service to expose the redis application within the cluster on port 6379. Use imperative commands.
+Service: redis-service
+Port: 6379
+Type: ClusterIP
+
+Ans: kubectl expose pod redis --port=6379 --name redis-service
+
+
+Que: Create a deployment named webapp using the image kodekloud/webapp-color with 3 replicas. Try to use imperative commands only. Do not create definition files.
+Ans: kubectl create deployment webapp --image=kodekloud/webapp-color --replicas=3
