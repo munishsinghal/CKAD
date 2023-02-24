@@ -36,3 +36,8 @@ Que: Create a pod called httpd using the image httpd:alpine in the default names
     'httpd' service uses correct target port 80?
     'httpd' service exposes the 'httpd' pod?
 Ans:  kubectl run httpd --image=httpd:alpine --port=80 --expose
+
+
+
+Generate Deployment YAML file (-o yaml). Don't create it(--dry-run)
+kubectl create deployment --image=nginx nginx --dry-run -o yaml
