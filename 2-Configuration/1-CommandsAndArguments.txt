@@ -11,3 +11,24 @@ spec:
     image: debian
     command: ["printenv"]
     args: ["HOSTNAME", "KUBERNETES_PORT"]
+
+------------------------------
+
+FROM Ubuntu
+CMD sleep 5
+
+
+it will replace the complete command in the image
+
+docker run ubuntu-sleeper sleep 10
+
+
+------------------------------
+
+FROM Ubuntu
+ENTRYPOINT["sleep"]
+
+It will only append in the existing entrypoint
+docker run ubuntu-sleeper 10
+
+--------------------------------------
