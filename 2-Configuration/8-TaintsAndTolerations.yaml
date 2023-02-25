@@ -7,3 +7,20 @@ NoExecute—This will immediately evict all the pods without the matching tolera
 PerferNoSchedule—This is a softer version of NoSchedule where the controller will not try to schedule a pod with the tainted node. However, it is not a strict requirement.
 
 
+kubectl describe node kubemaster | grep Taint
+
+
+-----------------------------------------
+apiVersion: v1
+kind: Pod
+metadata:
+  name: bee
+spec:
+  containers:
+    - name: bee
+      image: nginx
+  tolerations:
+  - key: spray
+    value: moretein
+    operator: Equals
+    effect: NoSchedule
