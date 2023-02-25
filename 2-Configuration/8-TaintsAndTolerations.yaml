@@ -5,3 +5,5 @@ taint-effect: NoSchedule | PreferNoSchedule | NoExecute
 NoSchedule—The pod will not get scheduled to the node without a matching toleration.
 NoExecute—This will immediately evict all the pods without the matching toleration from the node.
 PerferNoSchedule—This is a softer version of NoSchedule where the controller will not try to schedule a pod with the tainted node. However, it is not a strict requirement.
+
+
