@@ -3,3 +3,6 @@ docker run --user=1001 ubuntu sleep 3600
 
 docker run --cap-add MAC_ADMIN ubuntu
 
+
+Settings over the Pod level, will implement on all containers inside the Pod 
+but settings over the Container are related only to particular Container.
