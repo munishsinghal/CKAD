@@ -11,3 +11,13 @@ spec:
     env:
       - name: APP_COLOR
         value: green
+
+
+------------------
+
+env:
+  - name: APP_COLOR
+    valueFrom:
+        configMapRef:
+        or
+        secretKeyRef:
