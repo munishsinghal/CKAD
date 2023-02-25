@@ -1,1 +1,5 @@
 
+docker run --user=1001 ubuntu sleep 3600
+
+docker run --cap-add MAC_ADMIN ubuntu
+
