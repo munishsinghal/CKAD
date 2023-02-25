@@ -24,3 +24,9 @@ spec:
     value: moretein
     operator: Equals
     effect: NoSchedule
+
+
+---------------------------
+
+Que: Remove the taint on controlplane, which currently has the taint effect of NoSchedule.
+Ans: kubectl taint nodes controlplane node-role.kubernetes.io/control-plane:NoSchedule-
