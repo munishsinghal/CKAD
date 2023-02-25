@@ -56,3 +56,8 @@ spec:
       capabilities:
         add: ["MAC_ADMIN"]
 
+
+-------------------
+
+Que: What is the user used to execute the sleep process within the ubuntu-sleeper pod?
+And: kubectl exec ubuntu-sleeper -- whoami
