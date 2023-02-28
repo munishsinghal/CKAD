@@ -1,5 +1,6 @@
 
-port is mandatory. if you did not define targetport then it is assumend as same as port(if not defined). And nodeport will be assumed as any free port from 30000-32767.
+port is mandatory. if you did not define targetport then it is assumend as same as port(if not defined). 
+And nodeport will be assumed as any free port from 30000-32767.
 
 
 
@@ -15,3 +16,5 @@ spec:
       nodePort: 30080
   selector:
     name: simple-webapp
+
+
