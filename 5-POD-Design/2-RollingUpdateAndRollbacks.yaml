@@ -83,3 +83,27 @@ spec:
             initialDelaySeconds: 5
             periodSeconds: 5
             successThreshold: 1
+
+
+
+--------------------------------------
+
+- Creating a deployment, checking the rollout status and history
+kubectl create deployment nginx --image=nginx:1.16
+kubectl rollout history deployment nginx
+
+- Using the --revision flag
+kubectl rollout history deployment nginx --revision=1
+kubectl rollout history deployment nginx --revision=3
+
+Using the --record flag
+kubectl set image deployment nginx nginx=nginx:1.17 --record
+kubectl rollout history deployment nginx
+
+Undo a change
+kubectl edit deployments.apps nginx --record=true
+kubectl set image deployment nginx nginx=nginx:1.17 --record=true
+
+To rollback to specific revision we will use the --to-revision flag
+kubectl rollout undo deployment nginx --to-revision=1
+kubectl rollout history deployment nginx
