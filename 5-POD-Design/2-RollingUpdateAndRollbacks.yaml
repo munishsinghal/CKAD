@@ -3,7 +3,7 @@
 update image for existing deployment
 kubectl set image deployment/myapp-dep nginx=nginx:1.9.1
 
-kubectl rollout status deployment/mmyapp-dep
+kubectl rollout status deployment/myapp-dep
 
 kubectl rollout history deployment/myapp-dep
 
