@@ -1,30 +1,25 @@
 apiVersion: networking.k8s.io/v1
 kind: Ingress
 metadata:
-  name: app-ingress
+  name: hello-world-and-universe
+  annotations:
+    nginx.ingress.kubernetes.io/rewrite-target: 
 spec:
-#it will create a new loadbalancer as well
   rules:
-  - http:
+  - host: test.example.com
+    http:
       paths:
-      - path: /
+      - path: /hello-world
         pathType: Prefix
         backend:
           service:
-           name: app1
-           port:
-            number: 80
-      - path: /v2
+            name: hello-world
+            port:
+              number: 8080
+      - path: /hello-universe
         pathType: Prefix
         backend:
           service:
-           name: app2
-           port:
-            number: 8080
-      - path: /v3
-        pathType: Prefix
-        backend:
-          service:
-           name: app3
-           port:
-            number: 8080
+            name: hello-universe
+            port:
+              number: 8080
