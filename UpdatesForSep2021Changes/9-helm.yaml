@@ -1,5 +1,5 @@
 
-
+cat /etc/os-release  //to check curret os
 
 helm install wordpress
 
