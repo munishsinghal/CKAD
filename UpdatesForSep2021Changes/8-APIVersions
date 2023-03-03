@@ -1,0 +1,3 @@
+kubectl proxy 8001&
+
+curl localhost:8001/apis/authorization.k8s.io
