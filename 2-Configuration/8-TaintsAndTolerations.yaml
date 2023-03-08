@@ -22,7 +22,7 @@ spec:
   tolerations:
   - key: spray
     value: moretein
-    operator: Equals
+    operator: Equal
     effect: NoSchedule
 
 
