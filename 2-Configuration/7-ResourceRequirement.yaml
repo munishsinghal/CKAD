@@ -8,10 +8,12 @@ spec:
   - name: cpu-demo-ctr-2
     image: vish/stress
     resources:
-      limits:
-        cpu: "100"
       requests:
-        cpu: "100"
+        memory: 64Mi
+        cpu: 250m
+      limits:
+        memory: 128Mi
+        cpu: 500m
     args:
     - -cpus
     - "2"
