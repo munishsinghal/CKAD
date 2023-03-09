@@ -1,41 +1,3 @@
-apiVersion: network.k8s.io/v1
-kind: NetworkPolicy
-metadata:
-  name: db-policy
-  namespace: prod
-spec:
-  podSelector:
-    matchLabels:
-	  role: db
-	policyTypes:
-	- Ingress
-	- Egress
-	ingress:
-	- from:
-	  - podSelector:
-	      matchLabels:
-		    name: api-pod
-	  - namespaceSelector:
-	      matchLabels:
-		    name: staging
-	  - ipBlock:
-	      cidr: 192.168.5.10/32
-	  ports:
-	  - protocol: TCP
-	    port: 3306
-	egress:
-	- to:
-	  - ipBlock:
-	      cidr: 192.168.5.10/32
-	  ports:
-	  - protocol: TCP
-	    port: 80
-	    
------------------
-
-Run the command: kubectl get networkpolicy or kubectl get netpol
-
---------------------------------
 apiVersion: networking.k8s.io/v1
 kind: NetworkPolicy
 metadata:
@@ -66,4 +28,3 @@ spec:
     ports:
     - protocol: TCP
       port: 8080
-
