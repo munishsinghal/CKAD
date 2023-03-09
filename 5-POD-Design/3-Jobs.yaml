@@ -31,3 +31,7 @@ The possible values for the restartPolicy are:
     Never: Kubernetes will never restart the container when it exits.
 
 Here is an example of a YAML file for a pod with the restartPolicy set to OnFailure:
+
+
+backOffLimit:
+We can use backOffLimit when we want we want to a job to be considered a failure after some amount of retries due to a logical error. Use .spec.backoffLimit to specify the number of retries before considering a Job as failed. The back-off limit is set by default to 6.
